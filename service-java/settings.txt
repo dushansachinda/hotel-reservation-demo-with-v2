@@ -1,0 +1,15 @@
+export DB_HOST=mysql-b3642fc4-92e3-4078-b0b2-fd6686aedf9e-hrresd3511169945-cho.a.aivencloud.com
+export DB_PORT=23184
+export DB_NAME=reservations
+export DB_USERNAME=avnadmin
+export DB_PASSWORD=AVNS_ltrWi5m1CbCzhWxMIc4
+export NOTIFICATION_API_CLIENT_ID=xx
+export NOTIFICATION_API_CLIENT_SECRET=yy
+export NOTIFICATION_API_TOKEN_URL=http://foo.com
+export NOTIFICATION_API_ENDPOINT=http://bar.com
+
+
+curl -X 'GET' \
+  'http://localhost:8080/reservations/roomTypes?checkinDate=2024-02-15T15%3A00%3A38.122Z&checkoutDate=2024-02-16T15%3A00%3A38.122Z&guestCapacity=1' \
+  -H 'accept: */*' \
+  -H 'API-Key: ..Ur0----------xxx'
