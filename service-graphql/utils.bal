@@ -9,9 +9,9 @@ mysql:Client mysqlEp;
 
 function init() returns error? {
     //int dbPort = check int:fromString(dbPortStr);
-    log:printInfo("DB INFO: ", host = dbHost, user = dbUser, password = dbPassword, database = dbName, port = dbPort);
+    log:printInfo("DB INFO: ", host = DB_HOST, user = DB_USERNAME, password = DB_PASSWORD, database = DB_NAME, port = DB_PORT);
 
-    mysqlEp = check new (host = dbHost, user = dbUser, password = dbPassword, database = dbName, port = dbPort);
+    mysqlEp = check new (host = DB_HOST, user = DB_USERNAME, password = DB_PASSWORD, database = DB_NAME, port = DB_PORT);
 }
 
 # This function provides the available room types for a given date range and guest capacity
@@ -54,9 +54,9 @@ function getAvailableRoomTypes(string checkinDate, string checkoutDate, int gues
     return roomTypes;
 }
 
-configurable string dbHost = ?; //os:getEnv("DB_HOST");
-configurable string dbUser = ?; //os:getEnv("DB_USERNAME");
-configurable string dbPassword = ?; //os:getEnv("DB_PASSWORD");
-configurable string dbName =?; //os:getEnv("DB_NAME");
-configurable int dbPort = ?;//os:getEnv("DB_PORT");
+configurable string DB_HOST = ?; //os:getEnv("DB_HOST");
+configurable string DB_USERNAME = ?; //os:getEnv("DB_USERNAME");
+configurable string DB_PASSWORD = ?; //os:getEnv("DB_PASSWORD");
+configurable string DB_NAME =?; //os:getEnv("DB_NAME");
+configurable int DB_PORT = ?;//os:getEnv("DB_PORT");
 
