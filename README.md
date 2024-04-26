@@ -82,12 +82,13 @@ Create a web application that enables hotel guests to book rooms. The applicatio
 
 - Guests can cancel their reservations easily through the booking system.
 
+### Project Setup Guidance (WIP)
+TODO
+
+### Appendix
 - Reservation core services (graphQL)
 
-
-
 http://localhost:9090/roomgql			
-
 
 
 |Resource|Path|Action|Query Param|Path Param|Request|Respons|
@@ -95,12 +96,9 @@ http://localhost:9090/roomgql
 |Get all available room types|/roomgql||<p>string checking</p><p>Date</p><p></p><p>String checkout Date</p><p></p><p>Int guestCapacity</p>||<p>query RoomTypes {</p><p>`   `roomTypes(</p><p>`       `checkinDate: "2024-04-26T15:00:38.122Z"</p><p>`       `checkoutDate: "2024-04-26T16:00:38.122Z"</p><p>`       `guestCapacity: 1</p><p>`   `) {</p><p>`       `id</p><p>`       `guestCapacity</p><p>`       `price</p><p>`       `name</p><p>`   `}</p><p>}</p><p></p>|<p>"data": {</p><p>`       `"roomTypes": [</p><p>`           `{</p><p>`               `"id": 0,</p><p>`               `"guestCapacity": 1,</p><p>`               `"price": 80,</p><p>`               `"name": "Single"</p><p>`           `},</p><p>`           `{</p><p>`               `"id": 1,</p><p>`               `"guestCapacity": 2,</p><p>`               `"price": 120,</p><p>`               `"name": "Double"</p><p>`           `},</p><p>`           `{</p><p>`               `"id": 3,</p><p>`               `"guestCapacity": 4,</p><p>`               `"price": 300,</p><p>`               `"name": "Suite"</p><p>`           `}</p><p>`       `]</p><p>`   `}</p><p>}</p><p></p>|
 
 
-
-
 - Reservation core services (spring boot services)
 
 http://localhost:8080/reservations 
-
 
 |Resource|Path|Action|Query Param|Path Param|Request|Respons|
 | :- | :- | :- | :- | :- | :- | :- |
