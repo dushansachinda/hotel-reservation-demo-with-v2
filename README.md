@@ -45,6 +45,10 @@ Develop an HTTP service with Java Spring Boot that includes endpoints for:
 - **Updating reservations**: Enable modifications to existing bookings.
 - **Canceling reservations**: Provide a way for users to cancel their bookings.
 
+### 3.Develop Python HTTP for Email Notification  (Domain APIs)
+- The Python service will be designed to send email notifications related to user reservation activities. This service will interact with Azure communication services to manage the dispatch of emails.
+
+
 ## Project Objective
 
 Develop a reservation platform for a premium hotel establishment.
