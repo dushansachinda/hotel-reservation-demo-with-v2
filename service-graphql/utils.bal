@@ -43,7 +43,7 @@ function getAvailableRoomTypes(string checkinDate, string checkoutDate, int gues
     RoomTypeData[] roomTypes = [];
 
     error? e = infoStream.forEach(function(RoomTypeData roomTypeData) {
-        log:printInfo("RoomType: ", val= roomTypeData.name);
+        log:printInfo("RoomType: ", name= roomTypeData.name, capacity= roomTypeData.guest_capacity, price= roomTypeData.price);
         roomTypes.push(roomTypeData);
     });
     

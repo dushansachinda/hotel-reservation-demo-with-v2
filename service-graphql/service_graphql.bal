@@ -18,7 +18,7 @@ service class RoomType {
 
 
     resource function get guestCapacity() returns int {
-        return self.roomTypeData.guestCapacity;
+        return self.roomTypeData?.guest_capacity;
     }
 
     resource function get price() returns decimal {

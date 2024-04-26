@@ -14,7 +14,7 @@ public type Room record {|
 public type RoomTypeData record {
     int id;
     string name;
-    int guestCapacity;
+    int guest_capacity;
     decimal price;
 };
 
