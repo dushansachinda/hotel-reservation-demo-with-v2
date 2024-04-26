@@ -12,6 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
@@ -87,9 +88,12 @@ public class NotificationService {
                 .uri(uriBuilder -> uriBuilder.path("/send-email").build())
                 .bodyValue(emailRequest)
                 .retrieve()
-                .onStatus(status -> status.value() == 503, response -> Mono.error(new ServiceUnavailableException()))
+                .onStatus(
+                    status -> status.equals(HttpStatus.SERVICE_UNAVAILABLE) || status.equals(HttpStatus.BAD_GATEWAY),
+                    response -> Mono.error(new ServiceUnavailableException("Service is temporarily unavailable"))
+                )
                 .bodyToMono(String.class)
-                .retryWhen(Retry.fixedDelay(1, Duration.ofSeconds(30))
+                .retryWhen(Retry.fixedDelay(3, Duration.ofSeconds(30))
                         .filter(throwable -> throwable instanceof ServiceUnavailableException));
     }
 
