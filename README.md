@@ -81,3 +81,40 @@ Create a web application that enables hotel guests to book rooms. The applicatio
 ### Reservation Cancellation
 
 - Guests can cancel their reservations easily through the booking system.
+
+- Reservation core services (graphQL)
+
+
+
+http://localhost:9090/roomgql			
+
+
+
+|Resource|Path|Action|Query Param|Path Param|Request|Respons|
+| :- | :- | :- | :- | :- | :- | :- |
+|Get all available room types|/roomgql||<p>string checking</p><p>Date</p><p></p><p>String checkout Date</p><p></p><p>Int guestCapacity</p>||<p>query RoomTypes {</p><p>`   `roomTypes(</p><p>`       `checkinDate: "2024-04-26T15:00:38.122Z"</p><p>`       `checkoutDate: "2024-04-26T16:00:38.122Z"</p><p>`       `guestCapacity: 1</p><p>`   `) {</p><p>`       `id</p><p>`       `guestCapacity</p><p>`       `price</p><p>`       `name</p><p>`   `}</p><p>}</p><p></p>|<p>"data": {</p><p>`       `"roomTypes": [</p><p>`           `{</p><p>`               `"id": 0,</p><p>`               `"guestCapacity": 1,</p><p>`               `"price": 80,</p><p>`               `"name": "Single"</p><p>`           `},</p><p>`           `{</p><p>`               `"id": 1,</p><p>`               `"guestCapacity": 2,</p><p>`               `"price": 120,</p><p>`               `"name": "Double"</p><p>`           `},</p><p>`           `{</p><p>`               `"id": 3,</p><p>`               `"guestCapacity": 4,</p><p>`               `"price": 300,</p><p>`               `"name": "Suite"</p><p>`           `}</p><p>`       `]</p><p>`   `}</p><p>}</p><p></p>|
+
+
+
+
+- Reservation core services (spring boot services)
+
+http://localhost:8080/reservations 
+
+
+|Resource|Path|Action|Query Param|Path Param|Request|Respons|
+| :- | :- | :- | :- | :- | :- | :- |
+|Create new reservation||POST|||<p>{</p><p>`  `"checkinDate": "2024-02-19T14:00:00Z",</p><p>`  `"checkoutDate": "2024-02-20T10:00:00Z",</p><p>`  `"rate": 100,</p><p>`  `"user": {</p><p>`    `"id": "123",</p><p>`    `"name": "waruna",</p><p>`    `"email": "waruna@someemail.com",</p><p>`    `"mobileNumber": "987"</p><p>`  `},</p><p>`  `"roomType": "Family"</p><p>}</p>|<p>{</p><p>"id": "1",</p><p>"checkinDate": "2024-02-19T14:00:00Z",</p><p>"checkoutDate": "2024-02-20T10:00:00Z",</p><p>"user": {</p><p>"id": "123", "name": "waruna", "email":</p><p>"waruna@someemail.com ",</p><p>"mobileNumber": "987"</p><p>}, "room": {</p><p>"number" : 201, "type": {</p><p>"id": 0,</p><p>"name": "Double", "guestCapacity": 2, "price": 100</p><p>} }</p><p></p>|
+|Update existing reservation||PUT||reservation\_id|<p>{</p><p>"checkinDate":</p><p>"2024-02-20T14:00:00Z", "checkoutDate":</p><p>"2024-02-21T10:00:00Z" }</p><p></p>|<p>{</p><p>"id": "1",</p><p>"checkinDate": "2024-02-19T14:00:00Z",</p><p>"checkoutDate": "2024-02-21T10:00:00Z",</p><p>"user": {</p><p>"id": "123", "name": "waruna", "email":</p><p>"waruna@someemail.com ",</p><p>"mobileNumber": "987"</p><p>}, "room": {</p><p>"number" : 201, "type": {</p><p>"id": 0,</p><p>"name": "Double", "guestCapacity": 2, "price": 100</p><p>} }</p><p>}</p><p></p>|
+|Remove a reservation||DELETE||reservation\_id|||
+|Retrieve all reservation for user|/users/|GET||userID||<p>[</p><p>{</p><p>"checkinDate": "2024-02-19T14:00:00Z",</p><p>"checkoutDate": "2024-02-20T10:00:00Z",</p><p>"rate": 120, "user": {</p><p>"id": "123", "name": "waruna", "email":</p><p>"waruna@someemail.com ",</p><p>"mobileNumber": "987"</p><p>},</p><p>"roomType": "Family" },</p><p>{</p><p>"checkinDate":</p><p>"2024-02-23T14:00:00Z", "checkoutDate": "2024-02-24T10:00:00Z",</p><p>"rate": 100, "user": {</p><p>"id": "123", "name": "waruna", "email":</p><p>"waruna@someemail.com ",</p><p>"mobileNumber": "987"</p><p>},</p><p>"roomType": "Double" }</p><p>]</p><p></p>|
+
+
+- Notification services (python)
+
+http://localhost:8081/notifications 
+
+
+|Resource|Path|Action|Query Param|Path Param|Request|Respons|
+| :- | :- | :- | :- | :- | :- | :- |
+|send-email||POST|||<p>{</p><p>`  `"body": "This is a test email.",</p><p>`  `"recipient": "jane.doe@example.com",</p><p>`  `"subject": "Hello World"</p><p>}</p><p></p>|<p>{</p><p>`  `"status":<status update></p><p>}</p><p></p>|
