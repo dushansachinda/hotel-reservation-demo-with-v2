@@ -27,6 +27,10 @@ service class RoomType {
 }
 
 @graphql:ServiceConfig {
+    cors: {
+        allowOrigins: ["*"],
+        allowHeaders: ["Content-Type"]
+    },
     graphiql: {
         enabled: true
     }

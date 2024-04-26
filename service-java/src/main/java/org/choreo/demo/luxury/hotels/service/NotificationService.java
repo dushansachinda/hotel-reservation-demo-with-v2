@@ -1,5 +1,9 @@
 package org.choreo.demo.luxury.hotels.service;
 
+import java.time.Duration;
+
+import javax.naming.ServiceUnavailableException;
+
 import org.choreo.demo.luxury.hotels.model.Reservation;
 import org.choreo.demo.luxury.hotels.model.ReservationEvent;
 import org.choreo.demo.luxury.hotels.repo.ReservationRepository;
@@ -11,6 +15,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
+import reactor.util.retry.Retry;
 
 @Service
 public class NotificationService {
@@ -82,7 +87,10 @@ public class NotificationService {
                 .uri(uriBuilder -> uriBuilder.path("/send-email").build())
                 .bodyValue(emailRequest)
                 .retrieve()
-                .bodyToMono(String.class);
+                .onStatus(status -> status.value() == 503, response -> Mono.error(new ServiceUnavailableException()))
+                .bodyToMono(String.class)
+                .retryWhen(Retry.fixedDelay(1, Duration.ofSeconds(30))
+                        .filter(throwable -> throwable instanceof ServiceUnavailableException));
     }
 
 }
