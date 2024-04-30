@@ -116,28 +116,34 @@ try:
             print(f"Key: {message_key}, Value: {reservation}")
 
             if message_key == 'CREATED':
-                body = f"Hello {reservation['user']['name']},\n\n" \
-                    f"Your reservation for room {reservation['room']['number']} " \
-                    f"({reservation['room']['type']['name']}) from {reservation['checkinDate']} " \
-                    f"to {reservation['checkoutDate']} has been confirmed."
+                body = (
+                    f"Hello {reservation['user']['name']},<br><br>"
+                    f"Your reservation for room {reservation['room']['number']} "
+                    f"({reservation['room']['type']['name']}) from "
+                     f"{'-'.join(map(str, reservation['checkinDate']))} "
+                    f"to {'-'.join(map(str, reservation['checkoutDate']))} has been confirmed.")
                 recipient = reservation['user']['email']
-                subject = "Reservation Confirmation"
+                subject = "You have a booking at Lux hotels - Reservation Confirmation"
                 on_reservation_created(recipient, subject, body)
             elif message_key == 'UPDATED':
-                body = f"Hello {reservation['user']['name']},\n\n" \
-                    f"Your reservation for room {reservation['room']['number']} " \
-                    f"({reservation['room']['type']['name']}) from {reservation['checkinDate']} " \
-                    f"to {reservation['checkoutDate']} UPDATE has been confirmed."
+                body = (
+                    f"Hello {reservation['user']['name']},<br><br>"
+                    f"Your reservation for room {reservation['room']['number']} "
+                    f"({reservation['room']['type']['name']}) from "
+                     f"{'-'.join(map(str, reservation['checkinDate']))} "
+                    f"to {'-'.join(map(str, reservation['checkoutDate']))} MODIFICATION has been confirmed.")
                 recipient = reservation['user']['email']
-                subject = "Reservation UPDATE Confirmation"
+                subject = "You have a booking at Lux hotels - Reservation MODIFICATION Confirmation"
                 on_reservation_updated(reservation)
             elif message_key == 'DELETED':
-                body = f"Hello {reservation['user']['name']},\n\n" \
-                    f"Your reservation for room {reservation['room']['number']} " \
-                    f"({reservation['room']['type']['name']}) from {reservation['checkinDate']} " \
-                    f"to {reservation['checkoutDate']} CANCELLATION has been confirmed."
+                body = (
+                    f"Hello {reservation['user']['name']},<br><br>"
+                    f"Your reservation for room {reservation['room']['number']} "
+                    f"({reservation['room']['type']['name']}) from "
+                     f"{'-'.join(map(str, reservation['checkinDate']))} "
+                    f"to {'-'.join(map(str, reservation['checkoutDate']))} CANCELLATION has been confirmed.")
                 recipient = reservation['user']['email']
-                subject = "Reservation CANCELLATION Confirmation"
+                subject = "You have a booking at Lux hotels - Reservation CANCELLATION Confirmation"
                 on_reservation_cancelled(reservation)
             else:  
                 print("Unknown event type")
