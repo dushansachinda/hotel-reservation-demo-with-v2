@@ -135,9 +135,9 @@ try:
                 body = f"Hello {reservation['user']['name']},\n\n" \
                     f"Your reservation for room {reservation['room']['number']} " \
                     f"({reservation['room']['type']['name']}) from {reservation['checkinDate']} " \
-                    f"to {reservation['checkoutDate']} CANCELATION has been confirmed."
+                    f"to {reservation['checkoutDate']} CANCELLATION has been confirmed."
                 recipient = reservation['user']['email']
-                subject = "Reservation CANCELATION Confirmation"
+                subject = "Reservation CANCELLATION Confirmation"
                 on_reservation_cancelled(reservation)
             else:  
                 print("Unknown event type")

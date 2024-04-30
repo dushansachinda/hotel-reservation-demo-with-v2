@@ -16,6 +16,7 @@ Before you start, make sure you have:
 - A recent version of Google Chrome or Mozilla Firefox.
 - Ballerina v2201.8.4 installed on your workstation.
 - Microsoft Visual Studio (VSCode) with the WSO2 Ballerina plugin.
+- Kafka broker (you may use Confluent trial version)
 - Postman and curl (or any HTTP client) installed on your workstation.
 - Azure communication service keys (we will help with connection strings and keys).
 - A Choreo account.

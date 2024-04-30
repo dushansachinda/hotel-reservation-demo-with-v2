@@ -58,11 +58,7 @@ public class ReservationController {
                 reservationRequest.getRoomType())) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-
         Reservation reservation = reservationService.save(reservationRequest);
-        // notificationService.sendNotification(ReservationEvent.ReservationCreated,
-        // reservation);
-
         logger.info("Kafka notification created " + reservation);
         kafkaProducerService.sendMessage(reservation, ReservationEvent.ReservationCreated);
 
