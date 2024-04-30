@@ -38,6 +38,8 @@ export default function App() {
     email: "",
     id: "",
     name: "",
+    firstName: "",
+    lastName: "",
     mobileNumber: "",
   });
   const [isAuthLoading, setIsAuthLoading] = useState(true);
@@ -48,6 +50,9 @@ export default function App() {
       id: userInfo?.sub || "",
       name: userInfo?.first_name + " " + userInfo?.last_name,
       mobileNumber: userInfo?.mobile_number || "",
+      firstName: userInfo?.given_name || "",
+      lastName: userInfo?.family_name || "",
+
     };
   }
 
