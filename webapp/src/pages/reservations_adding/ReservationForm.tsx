@@ -40,6 +40,9 @@ const ReservationForm = () => {
     string | undefined
   >(undefined);
 
+
+  console.log("user ##", user);
+
   const handleCheckInChange = (e: any) => {
     const { value } = e.target;
     const checkInDate = new Date(value);
@@ -81,6 +84,8 @@ const ReservationForm = () => {
         id: user.id,
         mobileNumber,
         name: `${firstName} ${lastName}`,
+        firstName: firstName, 
+        lastName: lastName
       },
     });
 
@@ -118,6 +123,7 @@ const ReservationForm = () => {
             fullWidth
             label="First Name"
             variant="outlined"
+            value={user.firstName || formData.firstName}
           />
         </Box>
         <Box width="48%">
@@ -126,6 +132,7 @@ const ReservationForm = () => {
             fullWidth
             label="Last Name"
             variant="outlined"
+            value={user.lastName || formData.lastName}
           />
         </Box>
       </Box>
@@ -143,6 +150,7 @@ const ReservationForm = () => {
           fullWidth
           label="Email Address"
           variant="outlined"
+          value={user.email || formData.emailAddress}
         />
       </Box>
       <Box

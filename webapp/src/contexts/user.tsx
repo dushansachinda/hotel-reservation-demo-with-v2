@@ -6,4 +6,6 @@ export const UserContext = createContext<User>({
   id: "",
   name: "",
   mobileNumber: "",
+  firstName: "",
+  lastName: "",
 });

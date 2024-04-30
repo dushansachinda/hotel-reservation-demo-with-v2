@@ -44,5 +44,9 @@ export interface User {
      * @memberof User
      */
     'mobileNumber': string;
+
+    'firstName': string;
+    
+    'lastName': string;
 }
 
