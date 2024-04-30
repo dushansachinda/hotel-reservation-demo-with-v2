@@ -72,6 +72,19 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
+
+        <dependency>
+            <groupId>org.apache.kafka</groupId>
+            <artifactId>kafka-clients</artifactId>
+            <version>3.3.2</version> <!-- Specify the version if it's not managed by Spring Boot -->
+        </dependency>
+
+        
+        <dependency>
+            <groupId>org.springframework.kafka</groupId>
+            <artifactId>spring-kafka</artifactId>
+            <version>3.1.4</version> <!-- Specify the version if it's not managed by Spring Boot -->
+        </dependency>
 	</dependencies>
 
 	<build>

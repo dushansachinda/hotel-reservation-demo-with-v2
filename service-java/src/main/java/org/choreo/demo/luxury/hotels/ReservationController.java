@@ -3,6 +3,7 @@ package org.choreo.demo.luxury.hotels;
 import org.choreo.demo.luxury.hotels.dto.ReservationDto;
 import org.choreo.demo.luxury.hotels.dto.ReservationRequest;
 import org.choreo.demo.luxury.hotels.dto.UpdateReservationRequest;
+import org.choreo.demo.luxury.hotels.event.KafkaProducerService;
 import org.choreo.demo.luxury.hotels.model.Reservation;
 import org.choreo.demo.luxury.hotels.model.ReservationEvent;
 import org.choreo.demo.luxury.hotels.model.RoomType;
@@ -32,6 +33,9 @@ public class ReservationController {
     @Autowired
     NotificationService notificationService;
 
+    @Autowired
+    private KafkaProducerService kafkaProducerService;
+
     @GetMapping("/roomTypes")
     public ResponseEntity<List<RoomType>> getRoomTypes(
             @RequestParam(defaultValue = "2024-02-15T15:00:38.122Z") String checkinDate,
@@ -57,8 +61,9 @@ public class ReservationController {
 
         Reservation reservation = reservationService.save(reservationRequest);
         notificationService.sendNotification(ReservationEvent.ReservationCreated, reservation);
-        ReservationDto dto = ReservationDto.from(reservation);
+        kafkaProducerService.sendMessage(reservation,ReservationEvent.ReservationCreated);
 
+        ReservationDto dto = ReservationDto.from(reservation);
         logger.info("reservation created " + dto);
         return new ResponseEntity<>(dto, HttpStatus.CREATED);
     }
