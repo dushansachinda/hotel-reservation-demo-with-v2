@@ -61,10 +61,12 @@ public class ReservationController {
 
         Reservation reservation = reservationService.save(reservationRequest);
         notificationService.sendNotification(ReservationEvent.ReservationCreated, reservation);
+
+        logger.info("Kafka notifiation #######1 " + reservation);
         kafkaProducerService.sendMessage(reservation,ReservationEvent.ReservationCreated);
 
         ReservationDto dto = ReservationDto.from(reservation);
-        logger.info("reservation created " + dto);
+        logger.info("reservation created-kafka version " + dto);
         return new ResponseEntity<>(dto, HttpStatus.CREATED);
     }
 
