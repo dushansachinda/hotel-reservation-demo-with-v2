@@ -32,10 +32,10 @@ public class EmailController {
     @PostMapping("/")
     public ResponseEntity<String> createReservation(@RequestBody EmailRequest emailRequest) {
 
-        notificationService.sendEmail(emailRequest)
-                .subscribe(
-                        successResponse -> logger.info("Email sent successfully: {}", successResponse),
-                        error -> logger.error("Error sending email: ", error));
+        // notificationService.sendEmail(emailRequest)
+        //         .subscribe(
+        //                 successResponse -> logger.info("Email sent successfully: {}", successResponse),
+        //                 error -> logger.error("Error sending email: ", error));
         return new ResponseEntity<>("email sent", HttpStatus.OK);
     }
 

@@ -29,8 +29,8 @@ public class NotificationService {
     @Autowired
     ReservationRepository reservationRepository;
 
-    @Autowired
-    WebClient webClient;
+    // @Autowired
+    // WebClient webClient;
 
     public void sendNotification(ReservationEvent event, Reservation reservation) {
 
@@ -61,7 +61,7 @@ public class NotificationService {
                 + " has been confirmed. We look forward to seeing you!";
 
         EmailRequest emailRequest = new EmailRequest(reservation.getUser().getEmail(), subject, body);
-        sendEmail(emailRequest).subscribe();
+        //sendEmail(emailRequest).subscribe();
     }
 
     private void onReservationUpdated(Reservation reservation) {
@@ -70,7 +70,7 @@ public class NotificationService {
                 + " has been updated. We look forward to seeing you!";
 
         EmailRequest emailRequest = new EmailRequest(reservation.getUser().getEmail(), subject, body);
-        sendEmail(emailRequest).subscribe();
+        //sendEmail(emailRequest).subscribe();
     }
 
     private void onReservationCancelled(Reservation reservation) {
@@ -79,22 +79,22 @@ public class NotificationService {
                 + " has been cancelled. We hope to see you soon!";
 
         EmailRequest emailRequest = new EmailRequest(reservation.getUser().getEmail(), subject, body);
-        sendEmail(emailRequest).subscribe();
+        //sendEmail(emailRequest).subscribe();
     }
 
-    public Mono<String> sendEmail(EmailRequest emailRequest) {
+    // public Mono<String> sendEmail(EmailRequest emailRequest) {
 
-        return this.webClient.post()
-                .uri(uriBuilder -> uriBuilder.path("/send-email").build())
-                .bodyValue(emailRequest)
-                .retrieve()
-                .onStatus(
-                    status -> status.equals(HttpStatus.SERVICE_UNAVAILABLE) || status.equals(HttpStatus.BAD_GATEWAY),
-                    response -> Mono.error(new ServiceUnavailableException("Service is temporarily unavailable"))
-                )
-                .bodyToMono(String.class)
-                .retryWhen(Retry.fixedDelay(3, Duration.ofSeconds(30))
-                        .filter(throwable -> throwable instanceof ServiceUnavailableException));
-    }
+    //     return this.webClient.post()
+    //             .uri(uriBuilder -> uriBuilder.path("/send-email").build())
+    //             .bodyValue(emailRequest)
+    //             .retrieve()
+    //             .onStatus(
+    //                 status -> status.equals(HttpStatus.SERVICE_UNAVAILABLE) || status.equals(HttpStatus.BAD_GATEWAY),
+    //                 response -> Mono.error(new ServiceUnavailableException("Service is temporarily unavailable"))
+    //             )
+    //             .bodyToMono(String.class)
+    //             .retryWhen(Retry.fixedDelay(3, Duration.ofSeconds(30))
+    //                     .filter(throwable -> throwable instanceof ServiceUnavailableException));
+    // }
 
 }
