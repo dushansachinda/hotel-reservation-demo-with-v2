@@ -60,10 +60,11 @@ public class ReservationController {
         }
 
         Reservation reservation = reservationService.save(reservationRequest);
-        notificationService.sendNotification(ReservationEvent.ReservationCreated, reservation);
+        // notificationService.sendNotification(ReservationEvent.ReservationCreated,
+        // reservation);
 
-        logger.info("Kafka notifiation #######1 " + reservation);
-        kafkaProducerService.sendMessage(reservation,ReservationEvent.ReservationCreated);
+        logger.info("Kafka notification created " + reservation);
+        kafkaProducerService.sendMessage(reservation, ReservationEvent.ReservationCreated);
 
         ReservationDto dto = ReservationDto.from(reservation);
         logger.info("reservation created-kafka version " + dto);
@@ -74,7 +75,12 @@ public class ReservationController {
     public ResponseEntity<ReservationDto> updateReservation(@PathVariable("reservation_id") Long reservationId,
             @RequestBody UpdateReservationRequest updateReservationRequest) {
         Reservation reservation = reservationService.update(reservationId, updateReservationRequest);
-        notificationService.sendNotification(ReservationEvent.ReservationUpdated, reservation);
+        // notificationService.sendNotification(ReservationEvent.ReservationUpdated,
+        // reservation);
+
+        logger.info("Kafka notification update " + reservation);
+        kafkaProducerService.sendMessage(reservation, ReservationEvent.ReservationUpdated);
+
         ReservationDto dto = ReservationDto.from(reservation);
         logger.info("updated the reservation: " + dto);
         return new ResponseEntity<>(dto, HttpStatus.OK);
@@ -83,10 +89,11 @@ public class ReservationController {
     @DeleteMapping("/{reservation_id}")
     public ResponseEntity<Void> deleteReservation(@PathVariable("reservation_id") Long reservationId) {
         Optional<Reservation> deletedReservation = reservationService.delete(reservationId);
+
         logger.info("deleted the reservation: " + reservationId);
 
         deletedReservation.ifPresent(
-                reservation -> notificationService.sendNotification(ReservationEvent.ReservationDeleted, reservation));
+                reservation -> kafkaProducerService.sendMessage(reservation, ReservationEvent.ReservationDeleted));
 
         return new ResponseEntity<>(HttpStatus.OK);
     }

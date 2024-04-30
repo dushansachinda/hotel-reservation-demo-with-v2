@@ -131,7 +131,7 @@ try:
                 recipient = reservation['user']['email']
                 subject = "Reservation UPDATE Confirmation"
                 on_reservation_updated(reservation)
-            elif message_key == 'CANCELLED':
+            elif message_key == 'DELETED':
                 body = f"Hello {reservation['user']['name']},\n\n" \
                     f"Your reservation for room {reservation['room']['number']} " \
                     f"({reservation['room']['type']['name']}) from {reservation['checkinDate']} " \
