@@ -30,8 +30,8 @@ public class ReservationController {
     @Autowired
     private ReservationService reservationService;
 
-    @Autowired
-    NotificationService notificationService;
+    //@Autowired
+    //NotificationService notificationService;
 
     @Autowired
     private KafkaProducerService kafkaProducerService;

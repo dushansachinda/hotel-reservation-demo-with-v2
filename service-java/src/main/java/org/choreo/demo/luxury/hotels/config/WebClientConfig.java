@@ -9,13 +9,13 @@ import org.springframework.security.oauth2.client.registration.ReactiveClientReg
 import org.springframework.security.oauth2.client.web.reactive.function.client.ServerOAuth2AuthorizedClientExchangeFilterFunction;
 import org.springframework.web.reactive.function.client.WebClient;
 
-@Configuration
+//@Configuration
 public class WebClientConfig {
 
-    @Value("${notification-api.endpoint}")
+    //@Value("${notification-api.endpoint}")
     private String notificationApiEndpoint;
 
-    @Bean
+    //@Bean
     WebClient webClient(
             ReactiveClientRegistrationRepository clientRegistrationRepository,
             ReactiveOAuth2AuthorizedClientService authorizedClientService

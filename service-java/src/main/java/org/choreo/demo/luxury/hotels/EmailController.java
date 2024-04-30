@@ -26,8 +26,8 @@ public class EmailController {
 
     private static final Logger logger = LoggerFactory.getLogger(EmailController.class);
 
-    @Autowired
-    NotificationService notificationService;
+    //@Autowired
+    //NotificationService notificationService;
 
     @PostMapping("/")
     public ResponseEntity<String> createReservation(@RequestBody EmailRequest emailRequest) {
