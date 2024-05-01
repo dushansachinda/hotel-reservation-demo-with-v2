@@ -80,10 +80,10 @@ const ReservationForm = () => {
       rate: 100,
       roomType: room.name,
       user: {
-        email: emailAddress,
+        email: user.email || formData.emailAddress,
         id: user.id,
         mobileNumber,
-        name: `${firstName} ${lastName}`,
+        name: `${user.firstName || formData.firstName} ${user.lastName || formData.lastName}`,
         firstName: firstName, 
         lastName: lastName
       },
