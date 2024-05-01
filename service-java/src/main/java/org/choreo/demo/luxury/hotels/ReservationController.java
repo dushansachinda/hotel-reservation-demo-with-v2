@@ -16,6 +16,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -54,6 +57,17 @@ public class ReservationController {
     @PostMapping("/")
     public ResponseEntity<ReservationDto> createReservation(@RequestBody ReservationRequest reservationRequest) {
         // Implement logic to create a reservation
+         ObjectMapper mapper = new ObjectMapper();
+         String json;
+        try {
+            json = mapper.writeValueAsString(reservationRequest);
+            logger.info("reservation FORM ####" + json);
+        } catch (JsonProcessingException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        //System.out.println(json);  // Print the JSON string
+        
         if (!reservationService.isAvailable(reservationRequest.getCheckinDate(), reservationRequest.getCheckoutDate(),
                 reservationRequest.getRoomType())) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
