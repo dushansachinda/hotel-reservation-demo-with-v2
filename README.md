@@ -103,7 +103,7 @@ Create a web application that enables hotel guests to book rooms. The applicatio
 - Guests can cancel their reservations easily through the booking system.
 
 ### Project Setup Guidance 
-[Set up guidance](/Building_Cloud_Native_Application_Project_Setup.pdf)
+[Set up guidance](/docs/Building_Cloud_Native_Application_Project_Setup.pdf)
 
 
 
