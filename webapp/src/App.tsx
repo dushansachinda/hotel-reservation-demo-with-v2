@@ -15,19 +15,29 @@ import NotFound from "./pages/not_found";
 import LandingPage from "./pages/landing_page";
 import theme from "./theme";
 import ErrorPage from "./pages/error";
+import Button from "@mui/material/Button";
 
 const FakeLoginPage = () => {
   return (
     <div>
-      <button
+      <Button
         onClick={() => {
           const value = process.env.REACT_APP_USER_INFO_COOKIE || "";
           Cookies.set("userinfo", value);
           window.location.pathname = "/rooms";
         }}
+        variant="contained"
+        color="secondary"
+        style={{
+          borderRadius: 32,
+          textTransform: "none",
+          height: 64,
+          width: 200,
+          fontSize: 18,
+        }}
       >
-        login-quickly
-      </button>
+        Login
+      </Button>
     </div>
   );
 };
