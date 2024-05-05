@@ -11,15 +11,34 @@ This tutorial will walk you through the creation of a cloud-native hotel reserva
 
 Before you start, make sure you have:
 
-- A GitHub account (forking instructions will be provided).
-- Git installed on your workstation.
-- A recent version of Google Chrome or Mozilla Firefox.
-- Ballerina v2201.8.4 installed on your workstation.
-- Microsoft Visual Studio (VSCode) with the WSO2 Ballerina plugin.
-- Kafka broker (you may use Confluent trial version)
-- Postman and curl (or any HTTP client) installed on your workstation.
-- Azure communication service keys (we will help with connection strings and keys).
-- A Choreo account.
+1. **GitHub Account**
+   - Ensure you have a GitHub account. Sign up or log in here: [GitHub](https://github.com/)
+2. **Microsoft Visual Studio Code**
+   - Download and install Visual Studio Code if not already installed: [VSCode](https://code.visualstudio.com/)
+   - Install the WSO2 Ballerina plugin from the VSCode extensions marketplace.
+3. **Git**
+   - Install Git for version control. Follow the installation guide here: [Git](https://git-scm.com/downloads)
+4. **Web Browser**
+   - A recent version of Google Chrome or Mozilla Firefox is required.
+5. **HTTP Client**
+   - Install Postman and curl for testing HTTP requests. Download Postman here: [Postman](https://www.postman.com/downloads/)
+   - Curl is usually pre-installed on Unix-based systems. For Windows, you can download it here: [Curl](https://curl.se/windows/)
+6. **Ballerina**
+   - Install the latest version of Ballerina. Follow the installation instructions here: [Ballerina Swan Lake](https://ballerina.io/)
+   - Ensure the Ballerina VSCode extension is installed.
+7. **Python**
+   - Install Python 3.x from the official website: [Python Downloads](https://www.python.org/downloads/)
+8. **Kafka Broker**
+   - Set up a Kafka broker. You can use the Confluent Cloud SaaS broker with a free trial: [Confluent Cloud](https://confluent.cloud/)
+9. **Azure Communication Services**
+   - Create an account and set up Azure Communication Services. Guidance on key generation will be provided during setup. Start with a trial account here: [Azure Communication Services](https://azure.microsoft.com/en-us/products/communication-services)
+10. **Choreo Account**
+    - Sign up for a Choreo account to integrate and deploy services efficiently.
+
+# Project Setup and Prerequisites
+
+This document outlines the necessary tools and services required to set up and run the project. Please ensure you have the following installed and configured on your workstation.
+
 
 ## Business Scenario
 
@@ -84,4 +103,7 @@ Create a web application that enables hotel guests to book rooms. The applicatio
 - Guests can cancel their reservations easily through the booking system.
 
 ### Project Setup Guidance 
-<u>Refer to "Building Cloud Native Applications_ Hotel Reservation System -v1.pdf"</u>
+[Set up guidance](/docs/Building_Cloud_Native_Application_Project_Setup.pdf)
+
+
+
